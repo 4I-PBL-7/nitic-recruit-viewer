@@ -1,0 +1,15 @@
+.main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  background-color: gainsboro;
+}
+
+.row-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  height: 100%;
+}
