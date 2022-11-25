@@ -26,18 +26,6 @@
   font-weight: bold;
 }
 
-.bolder {
-  font-weight: bolder;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
 .black {
-  color: black;
-}
-
-.white {
-  color: white;
+  font-weight: bolder;
 }
