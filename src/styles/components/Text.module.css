@@ -29,3 +29,7 @@
 .black {
   font-weight: bolder;
 }
+
+.underline {
+  text-decoration: underline;
+}
