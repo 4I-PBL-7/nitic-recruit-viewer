@@ -1,0 +1,8 @@
+.badge {
+  background-color: rgb(39, 39, 39);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 2px;
+  padding: 2px 4px;
+  font-family: monospace;
+}
