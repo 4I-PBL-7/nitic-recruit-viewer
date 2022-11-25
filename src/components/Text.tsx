@@ -3,9 +3,10 @@ import Link from 'next/link'
 import styles from 'styles/components/Text.module.css'
 
 type FontSize = 'header' | 'heading' | 'caption' | 'body' | 'small'
-type FontWeight = 'normal' | 'bold' | 'black'
+type FontWeight = 'normal' | 'bold' | 'bolder'
 type Props = {
   text: string
+  color?: string
   fontSize?: FontSize
   fontWeight?: FontWeight
   className?: string
@@ -14,6 +15,7 @@ type Props = {
 
 export const Text: React.FC<Props> = ({
   text,
+  color = 'black',
   fontSize = 'body',
   fontWeight = 'normal',
   href,
@@ -24,6 +26,7 @@ export const Text: React.FC<Props> = ({
       <a>
         <span
           className={clsx(
+            styles[color],
             styles[fontSize],
             styles[fontWeight],
             styles.underline,

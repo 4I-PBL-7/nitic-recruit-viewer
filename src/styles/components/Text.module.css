@@ -26,10 +26,18 @@
   font-weight: bold;
 }
 
-.black {
+.bolder {
   font-weight: bolder;
 }
 
 .underline {
   text-decoration: underline;
+}
+
+.black {
+  color: black;
+}
+
+.white {
+  color: white;
 }
