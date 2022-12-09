@@ -10,7 +10,7 @@ const SearchJobHistory: NextPage<Props> = () => {
   return (
     <main className={styles.main}>
       <Header title="茨城高専 過去の就職先" />
-      <div>
+      <div className={styles.content}>
         <SearchJobForm />
         <JobCard />
       </div>

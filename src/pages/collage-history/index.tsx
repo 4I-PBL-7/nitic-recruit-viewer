@@ -10,7 +10,7 @@ const SearchCollageHistory: NextPage<Props> = () => {
   return (
     <main className={styles.main}>
       <Header title="茨城高専 過去の進学先" />
-      <div>
+      <div className={styles.content}>
         <SearchCollageForm />
         <CollageCard />
       </div>
