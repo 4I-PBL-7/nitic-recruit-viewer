@@ -1,4 +1,4 @@
-import { Header } from 'components/Header'
+import { Header } from 'components/CollageHeader'
 import { CollageCard } from 'components/CollageCard'
 import { SearchCollageForm } from 'components/SearchCollageForm'
 import { NextPage } from 'next'
