@@ -32,4 +32,16 @@
    VSCode で `Ctrl+,` で設定を開き、 `format on save` と検索、保存時のフォーマットを有効化する
    `Ctrl+S` でファイルを保存したときなどに「フォーマッタを選択してください」旨のメッセージが表示されると思うので、 `prettier` を選択する
 
+5. **Develop with Git**
 
+   Git を利用した開発の手順 ( `{}` で囲まれたところは自分で入力)
+
+   1. `git checkout main` で main ブランチに戻る (一応)
+   2. `git pull origin main` で変更を同期する
+   3. `git checkout -b {ブランチ名}` でブランチを作成・移動する
+   4. コードを書く
+   5. `git add -A` で変更を stage (申請) する
+   6. `git commit -m "{メッセージ}"` で変更を commit (記録) する
+   7. `git push origin {ブランチ名}` で変更を Push する
+   8. ブラウザで GitHub を開き、Pull Request を作成する
+   9. レビュアーに連絡する
