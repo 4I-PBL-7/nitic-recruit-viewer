@@ -1,0 +1,120 @@
+.jobcard{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+    gap: 8px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 4px;
+}
+
+div.jobcard{
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+}
+
+.empty{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 35px;
+    color: #E8A363;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.main_frame{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 122px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+div.main_frame{
+    color: #414141;
+}
+
+.left_frame{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+}
+
+.right_frame{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 2px;
+}
+
+
+.sub_frame{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 2px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.result{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+}
+
+.result span{    
+    display: flex;
+    padding: 0px;
+    gap: 172px;
+}
+
+.title{
+    font-weight: 900;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.section{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+}
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    width: 918px;
+    height: 24px;
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    color: #E8A363;
+}
