@@ -15,7 +15,11 @@ const SearchJobHistory: NextPage<Props> = () => {
         <SearchJobForm />
         <div>
           <Text text="検索結果" fontSize="caption" />
-          <JobCard empty='Empty' job='ソフトウェアエンジニア' amount='190000' id=''/>
+          <JobCard empty='Empty' job='ソフトウェアエンジニア' amount='190000' result={{
+            year: '2022',
+            data: '6',
+            range: ['I', 'C']
+          }} id=''/>
         </div>
       </div>
     </main>

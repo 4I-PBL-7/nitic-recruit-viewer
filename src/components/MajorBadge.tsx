@@ -1,7 +1,7 @@
 import styles from 'styles/components/MajorBadge.module.css'
 import { Text } from 'components/Text'
 
-type Major = 'M' | 'S' | 'E' | 'I' | 'C'
+export type Major = 'M' | 'S' | 'E' | 'I' | 'C'
 type Props = {
   major: Major
 }

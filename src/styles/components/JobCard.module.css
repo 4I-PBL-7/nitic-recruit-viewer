@@ -75,14 +75,32 @@ div.main_frame{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0px;
+    padding: 2px;
     gap: 12px;
 }
 
 .result span{    
     display: flex;
     padding: 0px;
+    gap: 2px;
+    color: white;
+}
+
+.result2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
     gap: 172px;
+}
+
+.right_frame svg{
+    width: 18px;
+    height: 18px;
+    flex: none;
+    order: 3;
+    flex-grow: 0;
 }
 
 .title{
@@ -117,4 +135,5 @@ div.main_frame{
     display: flex;
     align-items: center;
     color: #E8A363;
+    gap: 5px;
 }
