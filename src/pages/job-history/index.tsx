@@ -1,13 +1,29 @@
+import { getJobHistories } from 'api/di'
 import { Header } from 'components/CollageHeader'
 import { JobCard } from 'components/JobCard'
 import { SearchJobForm } from 'components/SearchJobForm'
 import { Text } from 'components/Text'
-import { NextPage } from 'next'
+import { JobHistory } from 'domain/JobHistory'
+import { GetServerSideProps, NextPage } from 'next'
 import styles from 'styles/pages/job-history/index.module.css'
 
-type Props = {}
+type Props = {
+  items: JobHistory[]
+}
 
-const SearchJobHistory: NextPage<Props> = () => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  query,
+}) => {
+  const histories: JobHistory[] = await getJobHistories()
+
+  return {
+    props: {
+      items: histories,
+    },
+  }
+}
+
+const SearchJobHistory: NextPage<Props> = ({ items }) => {
   return (
     <main className={styles.main}>
       <Header title="茨城高専 過去の就職先" />
@@ -15,11 +31,20 @@ const SearchJobHistory: NextPage<Props> = () => {
         <SearchJobForm />
         <div>
           <Text text="検索結果" fontSize="caption" />
-          <JobCard empty='Empty' job='ソフトウェアエンジニア' amount='190000' result={{
-            year: '2022',
-            data: '6',
-            range: ['I', 'C']
-          }} id=''/>
+          {items.map((i) => (
+            <JobCard
+              key={i.name}
+              empty={i.name}
+              job="ソフトウェアエンジニア" /* */
+              amount="190000"
+              result={i.results.map((r) => ({
+                year: r.year.toString(),
+                range: r.majors,
+                data: r.majors.length.toString(),
+              }))}
+              id={i.id}
+            />
+          ))}
         </div>
       </div>
     </main>
