@@ -13,7 +13,7 @@ type Props = {
   job: string
   amount: string
   id: string
-  result: Result
+  result: Result[]
 }
 
 export const JobCard: React.FC<Props> = ({
@@ -23,6 +23,9 @@ export const JobCard: React.FC<Props> = ({
   result,
   id,
 }) => {
+  const result1 = result[0]
+  const result2 = result[1]
+
   return (
     <div className={styles.jobcard}>
       <header className={styles.empty}>
@@ -45,25 +48,25 @@ export const JobCard: React.FC<Props> = ({
         <div className={styles.right_frame}>
           <div className={styles.title}>受入実績</div>
           <div className={styles.result}>
-            <div>{result.year}</div>
+            <div>{result1.year}</div>
             <div className={styles.result2}>
               <span>
-                {result.range.map((r) => {
+                {result1.range.map((r) => {
                   return <MajorBadge key={r} major={r as Major} />
                 })}
               </span>
-              <div>{result.data}</div>
+              <div>{result1.data}</div>
             </div>
           </div>
           <div className={styles.result}>
-            <div>{result.year}</div>
+            <div>{result2.year}</div>
             <div className={styles.result2}>
               <span>
-                {result.range.map((r) => {
+                {result2.range.map((r) => {
                   return <MajorBadge key={r} major={r as Major} />
                 })}
               </span>
-              <div>{result.data}</div>
+              <div>{result2.data}</div>
             </div>
           </div>
           <svg
