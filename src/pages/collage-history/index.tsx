@@ -15,7 +15,18 @@ const SearchCollageHistory: NextPage<Props> = () => {
         <SearchCollageForm />
         <div>
           <Text text="検索結果" fontSize="caption" />
-          <CollageCard />
+          <CollageCard 
+          empty='EMPTY' 
+          prefecture='あああ' 
+          form='国立' 
+          department1='普通' 
+          department2='情報学科'
+          id='test'
+          result={{
+            year: '2022',
+            data: '6',
+            range: ['I','C']
+          }} />
         </div>
       </div>
     </main>
