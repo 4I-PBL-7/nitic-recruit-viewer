@@ -2,8 +2,8 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import styles from 'styles/components/Text.module.css'
 
-type FontSize = 'header' | 'heading' | 'caption' | 'body' | 'small'
-type FontWeight = 'normal' | 'bold' | 'black'
+type FontSize = 'header' | 'heading' | 'caption' | 'md' | 'body' | 'small'
+type FontWeight = 'normal' | 'medium' | 'bold' | 'black'
 type Props = {
   text: string
   fontSize?: FontSize
