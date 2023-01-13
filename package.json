@@ -10,15 +10,23 @@
     "fmt": "prettier --write 'src/**/*.{ts,tsx,css}'"
   },
   "dependencies": {
+    "@szhsin/react-menu": "^3.3.0",
+    "add": "^2.0.6",
     "clsx": "^1.2.1",
     "next": "12.3.1",
+    "or": "^0.2.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
+    "react-icons": "^4.7.1",
+    "react-native-vector-icons": "^9.2.0",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@types/node": "18.11.0",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
+    "@types/react-native-vector-icons": "^6.4.12",
     "eslint": "8.25.0",
     "eslint-config-next": "12.3.1",
     "prettier": "^2.7.1",

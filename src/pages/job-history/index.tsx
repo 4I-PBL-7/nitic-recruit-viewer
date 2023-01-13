@@ -1,5 +1,5 @@
 import { getJobHistories } from 'api/di'
-import { Header } from 'components/CollageHeader'
+import { Header } from 'components/JobHeader'
 import { JobCard } from 'components/JobCard'
 import { SearchJobForm } from 'components/SearchJobForm'
 import { Text } from 'components/Text'
