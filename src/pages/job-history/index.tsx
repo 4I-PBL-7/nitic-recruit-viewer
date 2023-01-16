@@ -106,7 +106,7 @@ const SearchJobHistory: NextPage<Props> = ({ items }) => {
           />
         </div>
         <div className={styles.result}>
-          <Text text="検索結果" fontSize="caption" />
+          <Text text="検索結果" fontSize="caption" fontWeight="bold" />
           {items.map((i) => (
             <JobCard
               key={i.name}

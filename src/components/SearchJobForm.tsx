@@ -133,7 +133,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
   return (
     <div className={styles['searchform-root']}>
       <div className={styles['searchform-filter']}>
-        <Text text="絞り込み" fontSize="md" />
+        <Text text="絞り込み" fontSize="md" fontWeight="bold" />
         {filters.map((a) => (
           <div key={a.name} className={styles['searchform-filter-attr']}>
             <Text
@@ -157,7 +157,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
         ))}
       </div>
       <div className={styles['searchform-sort']}>
-        <Text text="並び替え" fontSize="md" />
+        <Text text="並び替え" fontSize="md" fontWeight="bold" />
         {sorts.map((a) => (
           <div key={a.key} className={styles['searchform-sort-attr']}>
             <input
@@ -178,7 +178,11 @@ const SearchForm: React.FC<SearchFormProps> = ({
       </div>
       <div className={styles['submit-wrapper']}>
         <button className={styles['submit-button']} onClick={_onSubmit}>
-          <Text text="検索" fontWeight="bold" />
+          <Text
+            text="検索"
+            fontWeight="bold"
+            className={styles['submit-button-text']}
+          />
         </button>
       </div>
     </div>

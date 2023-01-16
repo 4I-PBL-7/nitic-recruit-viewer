@@ -22,13 +22,27 @@ export const Text: React.FC<Props> = ({
   return href !== undefined ? (
     <Link href={href} passHref>
       <a>
-        <span className={clsx(styles[fontSize], styles[fontWeight], className)}>
+        <span
+          className={clsx(
+            styles[fontSize],
+            styles[fontWeight],
+            styles.text,
+            className
+          )}
+        >
           {text}
         </span>
       </a>
     </Link>
   ) : (
-    <span className={clsx(styles[fontSize], styles[fontWeight], className)}>
+    <span
+      className={clsx(
+        styles[fontSize],
+        styles[fontWeight],
+        styles.text,
+        className
+      )}
+    >
       {text}
     </span>
   )
