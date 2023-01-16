@@ -14,3 +14,17 @@
   gap: 1rem;
   padding: 1rem;
 }
+
+.form {
+  /* position: sticky; */
+  width: 30%;
+  height: 100%;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 70%;
+  min-height: 100vh;
+}
