@@ -1,7 +1,8 @@
 import { Text } from 'components/Text'
+import { ChangeEvent, SyntheticEvent } from 'react'
 import styles from 'styles/components/SearchJobForm.module.css'
 
-type SearchFormFilterKey = { name: string; key: string }
+export type SearchFormFilterKey = { name: string; key: string }
 export type SearchFormData = {
   keyword: string
   filterKey: SearchFormFilterKey[]
@@ -9,7 +10,6 @@ export type SearchFormData = {
 }
 type Props = {
   onSubmit: () => void
-  onChange: () => void
   filters: FilterAttr[]
   sorts: SortAttr[]
   formData: SearchFormData
@@ -18,32 +18,38 @@ type Props = {
 
 export const SearchJobForm: React.FC<Props> = ({
   onSubmit,
-  onChange,
   filters,
   sorts,
   formData,
   setFormData,
 }) => {
   const onSearchBarChange = (keyword: string) => {
-    setFormData({ ...formData, keyword })
+    setFormData({
+      keyword,
+      filterKey: formData.filterKey,
+      sortKey: formData.sortKey,
+    })
   }
   const onSearchFormChange = (
-    filterKey: SearchFormFilterKey[],
-    sortKey: string
+    value: Pick<SearchFormData, 'filterKey' | 'sortKey'>
   ) => {
-    setFormData({ ...formData, filterKey, sortKey })
+    setFormData({
+      keyword: formData.keyword,
+      filterKey: value.filterKey,
+      sortKey: value.sortKey,
+    })
   }
 
   return (
     <div className={styles.wrapper}>
       <SearchBar
-        onChange={onChange}
+        onChange={onSearchBarChange}
         value={formData.keyword}
         onSubmit={onSubmit}
       />
       <SearchForm
         onSubmit={onSubmit}
-        onChange={onChange}
+        onChange={onSearchFormChange}
         filters={filters}
         sorts={sorts}
         value={formData}
@@ -58,13 +64,16 @@ type SearchBarProps = {
   onChange: (keyword: string) => void
 }
 const SearchBar: React.FC<SearchBarProps> = ({ value, onSubmit, onChange }) => {
-  const _onChange = () => onChange(value)
+  const _onChange = (e: ChangeEvent<HTMLInputElement>) =>
+    onChange(e.target.value ?? '')
 
   return (
     <div className={styles['searchbar-root']}>
       <input
         className={styles['searchbar-input']}
         placeholder="キーワード検索"
+        value={value}
+        type="text"
         onChange={_onChange}
         onSubmit={onSubmit}
       />
@@ -85,11 +94,11 @@ type SortAttr = {
   key: string
 }
 type SearchFormProps = {
-  onSubmit: () => void
-  onChange: (value: Omit<SearchFormData, 'keyword'>) => void
+  onSubmit: (value: Pick<SearchFormData, 'filterKey' | 'sortKey'>) => void
+  onChange: (value: Pick<SearchFormData, 'filterKey' | 'sortKey'>) => void
   filters: FilterAttr[]
   sorts: SortAttr[]
-  value: Omit<SearchFormData, 'keyword'>
+  value: Pick<SearchFormData, 'filterKey' | 'sortKey'>
 }
 const SearchForm: React.FC<SearchFormProps> = ({
   onSubmit,
@@ -98,7 +107,28 @@ const SearchForm: React.FC<SearchFormProps> = ({
   sorts,
   value,
 }) => {
-  const _onChange = () => onChange(value)
+  const onFilterChanged =
+    (attr: FilterAttr) => (e: ChangeEvent<HTMLSelectElement>) => {
+      const selected = e.target.value
+      const filterKey = [...value.filterKey, { name: attr.name, key: selected }]
+      const newValue = {
+        filterKey,
+        sortKey: value.sortKey,
+      }
+
+      onChange(newValue)
+    }
+  const onSortChanged = (e: ChangeEvent<HTMLInputElement>) => {
+    const selected = e.target.value
+    const newValue = {
+      filterKey: value.filterKey,
+      sortKey: selected,
+    }
+
+    onChange(newValue)
+  }
+
+  const _onSubmit = () => onSubmit(value)
 
   return (
     <div className={styles['searchform-root']}>
@@ -114,7 +144,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
             />
             <select
               className={styles['searchform-filter-attr-select']}
-              onChange={_onChange}
+              onChange={onFilterChanged(a)}
             >
               <option value="">{a.name + 'を選択'}</option>
               {a.choices.map((c) => (
@@ -135,6 +165,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
               id={a.key}
               type="radio"
               value={a.key}
+              onChange={onSortChanged}
             />
             <label
               className={styles['searchform-sort-attr-label']}
@@ -146,7 +177,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
         ))}
       </div>
       <div className={styles['submit-wrapper']}>
-        <button className={styles['submit-button']} onClick={onSubmit}>
+        <button className={styles['submit-button']} onClick={_onSubmit}>
           <Text text="検索" fontWeight="bold" />
         </button>
       </div>
