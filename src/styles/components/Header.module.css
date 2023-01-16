@@ -3,3 +3,31 @@
   flex-direction: row;
   align-items: center;
 }
+
+.job_text_color {
+  color: #E8A262;
+}
+
+.collage_text_color {
+  color: #CE5E5E;
+}
+.font {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 545;
+  font-size: 29px;
+  line-height: 29px;
+  padding: 12px;
+}
+.back_button{
+  width: 19px;
+  height: 14px;
+  opacity: 0.0;
+}
+.front_button{
+  width: 44px;
+  height: 18px;
+  position: absolute;
+  left: 312px;
+  top: 16px;
+}
