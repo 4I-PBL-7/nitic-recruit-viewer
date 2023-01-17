@@ -8,7 +8,7 @@ type Props = {
   form: string
   department1: string
   department2: string
-  result: Result
+  result: Result[]
   id: string
 }
 
@@ -27,6 +27,9 @@ export const CollageCard: React.FC<Props> = ({
   result,
   id,
 }) => {
+  const result1 = result[0]
+  const result2 = result[1]
+
   return (
     <div className={styles.CollageCard}>
       <header className={styles.empty}>
@@ -57,25 +60,25 @@ export const CollageCard: React.FC<Props> = ({
         <div className={styles.contents}>
           <span className={styles.title}>進学実績</span>
           <div className={styles.result}>
-            <div>{result.year}</div>
+            <div>{result1.year}</div>
             <div className={styles.result2}>
               <span>
-                {result.range.map((r) => {
+                {result1.range.map((r) => {
                   return <MajorBadge key={r} major={r as Major} />
                 })}
               </span>
-              <div>{result.data}</div>
+              <div>{result1.data}</div>
             </div>
           </div>
           <div className={styles.result}>
-            <div>{result.year}</div>
+            <div>{result2.year}</div>
             <div className={styles.result2}>
               <span>
-                {result.range.map((r) => {
+                {result2.range.map((r) => {
                   return <MajorBadge key={r} major={r as Major} />
                 })}
               </span>
-              <div>{result.data}</div>
+              <div>{result2.data}</div>
             </div>
           </div>
           <svg
