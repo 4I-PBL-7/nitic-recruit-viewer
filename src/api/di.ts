@@ -10,5 +10,5 @@ const API = process.env.API ?? 'mock'
 export const getJobHistories: () => Promise<JobHistory[]> =
   API === 'mock' ? mockGetJobHistories : gqlGetJobHistories
 
-export const etCollageHistories: () => Promise<CollageHistory[]> =
+export const getCollageHistories: () => Promise<CollageHistory[]> =
   API === 'mock' ? mockGetCollageHistories : gqlGetCollageHistories
