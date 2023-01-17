@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+
 .text {
   color: #414141;
 }
@@ -46,4 +48,12 @@
 
 .black {
   font-weight: bolder;
+}
+
+.NotoSansJP {
+  font-family: 'Source Code Pro';
+}
+
+.SourceCodePro {
+  font-family: 'Source Code Pro';
 }
