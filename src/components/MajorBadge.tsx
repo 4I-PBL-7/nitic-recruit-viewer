@@ -9,7 +9,12 @@ type Props = {
 export const MajorBadge: React.FC<Props> = ({ major }) => {
   return (
     <div className={styles.badge}>
-      <Text text={major} fontSize="small" fontWeight="bold" />
+      <Text
+        text={major}
+        fontSize="small"
+        fontWeight="bold"
+        font="SourceCodePro"
+      />
     </div>
   )
 }
