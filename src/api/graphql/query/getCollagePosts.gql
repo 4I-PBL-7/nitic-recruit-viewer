@@ -1,0 +1,50 @@
+query getJobs {
+  category(id: "job", idType: SLUG) {
+    posts {
+      nodes {
+        slug
+        title
+        job {
+          occupation
+          offer
+        }
+        tags {
+          nodes {
+            name
+            slug
+            result {
+              year
+              majors
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query getCollages {
+  category(id: "collage", idType: SLUG) {
+    posts {
+      nodes {
+        slug
+        title
+        collage {
+          recommendation
+          pref
+          form
+        }
+        tags {
+          nodes {
+            name
+            slug
+            result {
+              year
+              majors
+            }
+          }
+        }
+      }
+    }
+  }
+}

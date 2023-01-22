@@ -1,0 +1,42 @@
+query getJob($id: ID!) {
+  post(id: $id, idType: SLUG) {
+    slug
+    title
+    job {
+      occupation
+      offer
+    }
+    tags {
+      nodes {
+        name
+        slug
+        result {
+          year
+          majors
+        }
+      }
+    }
+  }
+}
+
+query getCollage($id: ID!) {
+  post(id: $id, idType: SLUG) {
+    slug
+    title
+    collage {
+      recommendation
+      pref
+      form
+    }
+    tags {
+      nodes {
+        name
+        slug
+        result {
+          year
+          majors
+        }
+      }
+    }
+  }
+}

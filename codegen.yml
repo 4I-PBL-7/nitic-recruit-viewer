@@ -1,0 +1,8 @@
+schema: ${GQL_ENDPOINT}
+documents: src/api/graphql/query/*.gql
+generates:
+  ./@types/wordpress.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
