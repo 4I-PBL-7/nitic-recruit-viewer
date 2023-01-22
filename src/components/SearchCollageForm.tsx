@@ -87,6 +87,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ value, onSubmit, onChange }) => {
 type Choice = { label: string; key: string }
 type FilterAttr = {
   name: string
+  fieldName: string
   choices: Choice[]
 }
 type SortAttr = {
@@ -110,7 +111,10 @@ const SearchForm: React.FC<SearchFormProps> = ({
   const onFilterChanged =
     (attr: FilterAttr) => (e: ChangeEvent<HTMLSelectElement>) => {
       const selected = e.target.value
-      const filterKey = [...value.filterKey, { name: attr.name, key: selected }]
+      const filterKey = [
+        ...value.filterKey,
+        { name: attr.fieldName, key: selected },
+      ]
       const newValue = {
         filterKey,
         sortKey: value.sortKey,
@@ -148,7 +152,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
             >
               <option value="">{a.name + 'を選択'}</option>
               {a.choices.map((c) => (
-                <option key={c.key} value={c.key}>
+                <option key={c.key} value={c.label}>
                   {c.label}
                 </option>
               ))}

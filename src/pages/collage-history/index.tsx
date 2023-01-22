@@ -5,11 +5,10 @@ import {
   SearchFormData,
   SearchFormFilterKey,
 } from 'components/SearchCollageForm'
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import styles from 'styles/pages/collage-history/index.module.css'
 import { Text } from 'components/Text'
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 import { CollageHistory } from 'domain/CollageHistory'
 import { getCollageHistories } from 'api/di'
 
@@ -17,9 +16,7 @@ type Props = {
   items: CollageHistory[]
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({
-  query,
-}) => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const histories: CollageHistory[] = await getCollageHistories()
 
   return {
@@ -30,10 +27,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
 }
 
 const SearchCollageHistory: NextPage<Props> = ({ items }) => {
-  const router = useRouter()
   const [keyword, setKeyword] = useState<string>('')
   const [filter, setFilter] = useState<SearchFormFilterKey[]>([])
   const [sort, setSort] = useState<string>('')
+  const [searched, setSearched] = useState<CollageHistory[]>(items)
 
   const formData: SearchFormData = {
     keyword: keyword,
@@ -47,28 +44,34 @@ const SearchCollageHistory: NextPage<Props> = ({ items }) => {
   }
 
   const onSearchFormSubmit = () => {
-    const path = '/collage-history'
-    const queries: string[] = []
+    let filtered = items
 
     if (keyword !== '') {
-      const q = `keyword=${keyword}`
-      queries.push(q)
+      filtered = filtered.filter((i) => i.name.includes(keyword))
     }
 
     if (filter.length !== 0) {
-      const filterQ = filter.map((k) => `${k.name}:${k.key}`)
-      const q = `filter=${filterQ.join(',')}`
-      queries.push(q)
+      filter.forEach((f) => {
+        if (f.key === undefined) return
+
+        const filterKey = f.name as keyof CollageHistory
+        console.log(f.key)
+        console.log(f.name)
+        filtered = filtered.filter((j) => {
+          console.log(j[filterKey], ':', f.key)
+          return j[filterKey] === f.key
+        })
+      })
     }
 
-    if (sort !== '') {
-      const q = `sort=${sort}`
-      queries.push(q)
-    }
+    // if (sort !== '') {
+    //   const sortKey = sort as keyof CollageHistory
+    //   filtered = filtered.sort(
+    //     (a, b) => (a[sortKey] as number) - (b[sortKey] as number)
+    //   )
+    // }
 
-    const query = queries.length === 0 ? '' : `?${queries.join('&')}`
-    console.log('subm: query', query)
-    router.push(path + query)
+    setSearched(filtered)
   }
 
   return (
@@ -82,39 +85,49 @@ const SearchCollageHistory: NextPage<Props> = ({ items }) => {
             setFormData={setFormData}
             filters={[
               {
-                name: 'テスト',
-                choices: [
-                  { label: 'one', key: '1' },
-                  { label: 'two', key: '2' },
-                ],
+                name: '所在地',
+                fieldName: 'pref',
+                choices: items
+                  .filter((j) => j.pref)
+                  .map((j, i) => ({
+                    label: j.pref as string,
+                    key: i.toString(),
+                  })),
               },
               {
-                name: 'テスト2',
-                choices: [
-                  { label: 'one', key: '1' },
-                  { label: 'two', key: '2' },
-                ],
+                name: '形態',
+                fieldName: 'form',
+                choices: items
+                  .filter((j) => j.form)
+                  .map((j, i) => ({
+                    label: j.form as string,
+                    key: i.toString(),
+                  })),
+              },
+              {
+                name: '推薦',
+                fieldName: 'reccomendation',
+                choices: items
+                  .filter((j) => j.recommendation)
+                  .map((j, i) => ({
+                    label: j.recommendation ? 'あり' : 'なし',
+                    key: i.toString(),
+                  })),
               },
             ]}
-            sorts={[
-              { name: 'テスト', key: 'test' },
-              { name: 'テスト2', key: 'test2' },
-              { name: 'テスト3', key: 'test3' },
-              { name: 'テスト4', key: 'test4' },
-              { name: 'テスト5', key: 'test5' },
-            ]}
+            sorts={[]}
           />
         </div>
         <div className={styles.result}>
           <Text text="検索結果" fontSize="caption" fontWeight="bold" />
-          {items.map((i) => (
+          {searched.map((i) => (
             <CollageCard
               key={i.id}
               empty={i.name}
-              prefecture="茨城県"
-              form="国立"
-              department1="普通"
-              department2="情報学科"
+              prefecture={i.pref ?? '記載なし'}
+              form={i.form ?? '記載なし'}
+              department1="記載なし"
+              department2="記載なし"
               result={i.results.map((r) => ({
                 year: r.year.toString(),
                 range: r.majors,
