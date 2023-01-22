@@ -41,7 +41,7 @@ export const JobCard: React.FC<Props> = ({
 
           <div className={styles.sub_frame}>
             <div className={styles.title}>初任給</div>
-            <div className={styles.section}>{amount}</div>
+            <div className={styles.section}>{amount}万円</div>
           </div>
         </div>
 
@@ -86,7 +86,7 @@ export const JobCard: React.FC<Props> = ({
 
       <footer className={styles.footer}>
         <div>
-          <a href={id}>詳しく見る</a>
+          <a href={`/job-history/${id}`}>詳しく見る</a>
         </div>
         <div>
           <svg
