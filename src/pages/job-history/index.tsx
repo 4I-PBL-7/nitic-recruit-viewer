@@ -114,7 +114,7 @@ const SearchJobHistory: NextPage<Props> = ({ items }) => {
               id={i.id}
               empty={i.name}
               job={i.occupation ?? '記載なし'}
-              amount={i.offer === undefined ? '記載なし' : i.offer.toString()}
+              amount={!i.offer ? '記載なし' : i.offer.toString()}
               result={i.results.map((r) => ({
                 year: r.year.toString(),
                 range: r.majors,
