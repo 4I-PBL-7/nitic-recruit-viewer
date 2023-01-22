@@ -53,12 +53,17 @@ const SearchJobHistory: NextPage<Props> = ({ items }) => {
     if (filter.length !== 0) {
       filter.forEach((f) => {
         if (f.key === undefined) return
-        filtered = filtered.filter((j) => j[f.name as keyof typeof j] === f.key)
+
+        const filterKey = f.name as keyof JobHistory
+        filtered = filtered.filter((j) => j[filterKey] === f.key)
       })
     }
 
     if (sort !== '') {
-      filtered = filtered.sort((a, b) => a.offer ?? 0 - (b.offer ?? 0))
+      const sortKey = sort as keyof JobHistory
+      filtered = filtered.sort(
+        (a, b) => (a[sortKey] as number) - (b[sortKey] as number)
+      )
     }
 
     setSearched(filtered)
@@ -77,18 +82,22 @@ const SearchJobHistory: NextPage<Props> = ({ items }) => {
               {
                 name: '職種',
                 fieldName: 'occupation',
-                choices: [
-                  { label: '情報技術者', key: '1' },
-                  { label: '電気技術者', key: '2' },
-                ],
+                choices: items
+                  .filter((j) => j.occupation)
+                  .map((j, i) => ({
+                    label: j.occupation as string,
+                    key: i.toString(),
+                  })),
               },
               {
                 name: '就職実績',
                 fieldName: 'results',
-                choices: [
-                  { label: 'one', key: '1' },
-                  { label: 'two', key: '2' },
-                ],
+                choices: items.flatMap((j) =>
+                  j.results.map((r, i) => ({
+                    label: r.year.toString(),
+                    key: i.toString(),
+                  }))
+                ),
               },
             ]}
             sorts={[
