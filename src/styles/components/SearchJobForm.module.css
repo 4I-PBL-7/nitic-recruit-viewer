@@ -70,7 +70,7 @@
 
 .searchform-filter-attr-name {
   word-break: break-all;
-  max-width: 30%;
+  width: 100%;
 }
 
 .searchform-filter-attr-select {
