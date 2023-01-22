@@ -44,20 +44,13 @@ const SearchJobHistory: NextPage<Props> = ({ items }) => {
   }
 
   const onSearchFormSubmit = () => {
-    const queries: string[] = []
     let filtered = items
 
     if (keyword !== '') {
-      const q = `keyword=${keyword}`
-      queries.push(q)
       filtered = filtered.filter((i) => i.name.includes(keyword))
     }
 
     if (filter.length !== 0) {
-      const filterQ = filter.map((k) => `${k.name}:${k.key}`)
-      const q = `filter=${filterQ.join(',')}`
-      queries.push(q)
-
       filter.forEach((f) => {
         if (f.key === undefined) return
         filtered = filtered.filter((j) => j[f.name as keyof typeof j] === f.key)
@@ -65,9 +58,6 @@ const SearchJobHistory: NextPage<Props> = ({ items }) => {
     }
 
     if (sort !== '') {
-      const q = `sort=${sort}`
-      queries.push(q)
-
       filtered = filtered.sort((a, b) => a.offer ?? 0 - (b.offer ?? 0))
     }
 
