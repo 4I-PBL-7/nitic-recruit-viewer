@@ -23,8 +23,7 @@ export const JobCard: React.FC<Props> = ({
   result,
   id,
 }) => {
-  const result1 = result[0]
-  const result2 = result[1]
+  const pickupResults = result.slice(0, 2)
 
   return (
     <div className={styles.jobcard}>
@@ -47,28 +46,19 @@ export const JobCard: React.FC<Props> = ({
 
         <div className={styles.right_frame}>
           <div className={styles.title}>受入実績</div>
-          <div className={styles.result}>
-            <div>{result1.year}</div>
-            <div className={styles.result2}>
-              <span>
-                {result1.range.map((r) => {
-                  return <MajorBadge key={r} major={r as Major} />
-                })}
-              </span>
-              <div>{result1.data}</div>
+          {pickupResults.map((r) => (
+            <div key={r.year} className={styles.result}>
+              <div>{r.year}</div>
+              <div className={styles.result2}>
+                <span>
+                  {r.range.map((r) => {
+                    return <MajorBadge key={r} major={r as Major} />
+                  })}
+                </span>
+                <div>{r.data}</div>
+              </div>
             </div>
-          </div>
-          <div className={styles.result}>
-            <div>{result2.year}</div>
-            <div className={styles.result2}>
-              <span>
-                {result2.range.map((r) => {
-                  return <MajorBadge key={r} major={r as Major} />
-                })}
-              </span>
-              <div>{result2.data}</div>
-            </div>
-          </div>
+          ))}
           <svg
             width="12"
             height="4"
