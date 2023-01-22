@@ -11,6 +11,9 @@ export const mockGetCollageHistory = async (
       { year: 2021, majors: ['M'] },
       { year: 2020, majors: ['M', 'M'] },
     ],
+    recommendation: true,
+    pref: '茨城県',
+    form: '国立',
   }
 
   return ret
